@@ -20,6 +20,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 "   "PHP laravel
 Bundle 'xsbeats/vim-blade'
+Bundle 'spf13/PIV'
 "Bundle 'mjoey/vim-magento'
 
 Bundle 'vim-scripts/matchit.zip'
