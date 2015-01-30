@@ -1,6 +1,9 @@
 [submodule "bundle/vundle.vim"]
 	path = bundle/vundle.vim
 	url = https://github.com/gmarik/Vundle.vim
-[submodule "colors"]
-	path = colors
+[submodule "colors/"]
+	path = colors/
+	url = https://github.com/alexesba/colors.git
+[submodule "bundle/colors"]
+	path = bundle/colors
 	url = https://github.com/alexesba/colors.git
