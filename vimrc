@@ -1,133 +1,133 @@
 set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/vundle.vim
-call vundle#rc()
-syntax on
-filetype on
+call vundle#begin()
 "vim extend functionality
-Bundle 'scrooloose/nerdtree'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'vim-scripts/xml.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-scripts/xml.vim'
 " Autoheader
-"  Bundle 'shanzi/autoHEADER'
+"  Plugin 'shanzi/autoHEADER'
 "Rails Plugins
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-haml'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'avakhov/vim-yaml'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-haml'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'avakhov/vim-yaml'
 "search plugins
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
 "   "PHP laravel
-Bundle 'xsbeats/vim-blade'
-Bundle 'spf13/PIV'
-"Bundle 'mjoey/vim-magento'
+Plugin 'xsbeats/vim-blade'
+Plugin 'spf13/PIV'
+"Plugin 'mjoey/vim-magento'
 
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tpope/vim-surround'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'tpope/vim-surround'
 
 "Git support
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 "Suport JS ant js templates
-"Bundle 'jeyb/vim-jst'
-"Bundle 'AndrewRadev/vim-eco'
-"Bundle  'nono/vim-handlebars'
+"Plugin 'jeyb/vim-jst'
+"Plugin 'AndrewRadev/vim-eco'
+"Plugin  'nono/vim-handlebars'
 
 "Adding custom status bar
-"Bundle 'maciakl/vim-neatstatus'
-"Bundle 'Lokaltog/vim-powerline'
+"Plugin 'maciakl/vim-neatstatus'
+"Plugin 'Lokaltog/vim-powerline'
 
 "Rabl syntax
-"Bundle 'yaymukund/vim-rabl'
+"Plugin 'yaymukund/vim-rabl'
 "multiedit cursor plugin
-Bundle "terryma/vim-multiple-cursors"
-"
+Plugin 'terryma/vim-multiple-cursors'
+
 "delete files usingh comands
-Bundle 'tpope/vim-eunuch'
-"
- " Go language
- Bundle 'jnwhiteh/vim-golang'
- Bundle 'Blackrush/vim-gocode'
+Plugin 'tpope/vim-eunuch'
 
-  filetype plugin indent on
-  set tabstop=2
-  set smarttab
-  set nowrap
-  set shiftwidth=2
-  set backspace=2
-  set backspace=indent,eol,start
-  set autoindent
-  set smarttab
-  set expandtab
-  set ignorecase
-  set hlsearch
-  set incsearch
-  set number
-  "Clear last search highlighting
-  map <Space> :noh<cr>
-  set ar " autoload edited file
-  " set textwidth=80
+" Go language
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'Blackrush/vim-gocode'
+call vundle#end()
+syntax on
+filetype plugin indent on
+set tabstop=2
+set smarttab
+set nowrap
+set shiftwidth=2
+set backspace=2
+set backspace=indent,eol,start
+set autoindent
+set smarttab
+set expandtab
+set ignorecase
+set hlsearch
+set incsearch
+set number
+"Clear last search highlighting
+map <Space> :noh<cr>
+set ar " autoload edited file
+" set textwidth=80
 
-  if exists('+colorcolumn')
-    set colorcolumn=80
-  else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.+', -1)
-  endif
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.+', -1)
+endif
 
 
-  set guioptions-=l
-  set guioptions-=r
-  set guioptions-=b
-  set guioptions+=e
-  set hidden
-  set laststatus=2
-  " set cursorline
+set guioptions-=l
+set guioptions-=r
+set guioptions-=b
+set guioptions+=e
+set hidden
+set laststatus=2
+" set cursorline
 
-  "custom maps
-  set backupskip=/tmp/*,/private/tmp/*
-  set directory=$HOME/.vim/tmp/swap
-  set undodir=$HOME/.vim/tmp/undo
-  set undofile
-  set nobackup
-  set noswapfile
-  let mapleader=","
-  map <leader>n :NERDTreeToggle <cr>
-  "Typos
-  command! -bang E e <bang>
-  command! -bang Q q <bang>
-  command! -bang W w <bang>
-  command! -bang QA qa <bang>
-  command! -bang QA qa <bang>
-  command! -bang WA wa <bang>
-  command! -bang WQ wq <bang>
-  command! -bang Qa qa <bang>
-  command! -bang Wa wa <bang>
-  command! -bang Wq wq <bang>
-  " Use numbers to pick the tab you want (like iTerm)
-  map <silent> <D-0> :tabn 0<cr>
-  map <silent> <D-1> :tabn 1<cr>
-  map <silent> <D-2> :tabn 2<cr>
-  map <silent> <D-3> :tabn 3<cr>
-  map <silent> <D-4> :tabn 4<cr>
-  map <silent> <D-5> :tabn 5<cr>
-  map <silent> <D-6> :tabn 6<cr>
-  map <silent> <D-7> :tabn 7<cr>
-  map <silent> <D-8> :tabn 8<cr>
-  map <silent> <D-9> :tabn 9<cr>
-  " color scheme console
-  "Power Line config
-  if has("gui_running")
-    colorscheme candystripe
-    " set background=light
-    set guifont=Monaco:h12
-    set go=
-    set go+=e
-  else
-    colorscheme vividchalk
-    " hi Normal ctermfg=252 ctermbg=none
-    " hi NonText ctermfg=none ctermbg=none
-  endif
+"custom maps
+set backupskip=/tmp/*,/private/tmp/*
+set directory=$HOME/.vim/tmp/swap
+set undodir=$HOME/.vim/tmp/undo
+set undofile
+set nobackup
+set noswapfile
+let mapleader=","
+map <leader>n :NERDTreeToggle <cr>
+"Typos
+command! -bang E e <bang>
+command! -bang Q q <bang>
+command! -bang W w <bang>
+command! -bang QA qa <bang>
+command! -bang QA qa <bang>
+command! -bang WA wa <bang>
+command! -bang WQ wq <bang>
+command! -bang Qa qa <bang>
+command! -bang Wa wa <bang>
+command! -bang Wq wq <bang>
+" Use numbers to pick the tab you want (like iTerm)
+map <silent> <D-0> :tabn 0<cr>
+map <silent> <D-1> :tabn 1<cr>
+map <silent> <D-2> :tabn 2<cr>
+map <silent> <D-3> :tabn 3<cr>
+map <silent> <D-4> :tabn 4<cr>
+map <silent> <D-5> :tabn 5<cr>
+map <silent> <D-6> :tabn 6<cr>
+map <silent> <D-7> :tabn 7<cr>
+map <silent> <D-8> :tabn 8<cr>
+map <silent> <D-9> :tabn 9<cr>
+" color scheme console
+"Power Line config
+if has("gui_running")
+  colorscheme candystripe
+  " set background=light
+  set guifont=Monaco:h12
+  set go=
+  set go+=e
+else
+  colorscheme vividchalk
+  " hi Normal ctermfg=252 ctermbg=none
+  " hi NonText ctermfg=none ctermbg=none
+endif
 "
 "   "Config for js indentation files
 "   let g:html_indent_inctags = "html,body,head,tbodyi"
