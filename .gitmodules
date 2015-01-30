@@ -6,7 +6,7 @@
 	path = colors/
 	url = https://github.com/alexesba/colors.git
   ignore = dirty
-[submodule "bundle/colors"]
-	path = bundle/colors
+[submodule "alexesba/colors"]
+	path = alexesba/colors
 	url = https://github.com/alexesba/colors.git
   ignore = dirty
