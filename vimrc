@@ -25,6 +25,9 @@ Bundle 'xsbeats/vim-blade'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tpope/vim-surround'
 
+"Git support
+Bundle 'tpope/vim-fugitive'
+
 "Suport JS ant js templates
 "Bundle 'jeyb/vim-jst'
 "Bundle 'AndrewRadev/vim-eco'
