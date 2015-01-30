@@ -6,8 +6,7 @@ then
   mv $HOME/.vimrc $HOME/.vimrc_old
 fi
 
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
-ln -s $HOME/.vim/bundle/colors $HOME/.vim/colors
+# ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
 echo "initializing submodules"
 git submodule init
