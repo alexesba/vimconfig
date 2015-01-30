@@ -6,12 +6,14 @@ then
   mv $HOME/.vimrc $HOME/.vimrc_old
 fi
 
-ln -s vimrc $HOME/.vimrc
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
+ln -s $HOME/.vim/bundle/colors $HOME/.vim/colors
 
 echo "initializing submodules"
 git submodule init
 echo "updating submodules"
 git submodule update
+git submodule foreach git pull origin master
 
 echo "installing all vim plugins defined on .vimrc file"
 vim +PluginInstall +qall

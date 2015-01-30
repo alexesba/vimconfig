@@ -1,9 +1,12 @@
 [submodule "bundle/vundle.vim"]
 	path = bundle/vundle.vim
 	url = https://github.com/gmarik/Vundle.vim
+  ignore = dirty
 [submodule "colors/"]
 	path = colors/
 	url = https://github.com/alexesba/colors.git
+  ignore = dirty
 [submodule "bundle/colors"]
 	path = bundle/colors
 	url = https://github.com/alexesba/colors.git
+  ignore = dirty
