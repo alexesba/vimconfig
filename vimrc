@@ -3,6 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle.vim
 call vundle#begin()
 "vim extend functionality
+Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'vim-scripts/xml.vim'

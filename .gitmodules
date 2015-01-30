@@ -1,7 +1,3 @@
-[submodule "bundle/Vundle.vim"]
-	path = bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim
-  ignore = dirty
 [submodule "alexesba/colors"]
 	path = alexesba/colors
 	url = https://github.com/alexesba/colors.git
