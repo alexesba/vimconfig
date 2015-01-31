@@ -158,7 +158,7 @@ inoremap <silent> <Leader>c <Esc>:TComment<CR>i
 "Start searching with Ack
 nnoremap <leader>a :Ag
 set nocp
-let coffee_compiler='/usr/local/bin/coffee'
+let coffee_compiler='$(which coffee)'
 "Format json files
 "   command! FormatJSON %!python -m json.tool
 
