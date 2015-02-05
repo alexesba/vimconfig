@@ -6,7 +6,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
+
+"Autoclose tags
 Plugin 'vim-scripts/xml.vim'
+Plugin 'vim-scripts/closetag.vim'
+
 " Autoheader
 "  Plugin 'shanzi/autoHEADER'
 "Rails Plugins
@@ -49,6 +53,7 @@ Plugin 'tpope/vim-eunuch'
 " Go language
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
 call vundle#end()
 syntax on
 filetype plugin indent on
@@ -125,6 +130,7 @@ if has("gui_running")
   set go=
   set go+=e
 else
+  set t_Co=256
   colorscheme vividchalk
   " hi Normal ctermfg=252 ctermbg=none
   " hi NonText ctermfg=none ctermbg=none
@@ -139,46 +145,46 @@ nnoremap <silent> <Leader>c :TComment<CR>
 vnoremap <silent> <Leader>c :TComment<CR>
 inoremap <silent> <Leader>c <Esc>:TComment<CR>i
 
-"Ctrlp
-" let g:ctrlp_dont_split = "NERD_tree_2"
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_jump_to_buffer = 0
-" let g:ctrlp_map = "<leader>f"
-" let g:ctrlp_working_path_mode = 0
-" let g:ctrlp_match_window_reversed = 1
-" let g:ctrlp_split_window = 0
-" let g:ctrlp_max_height = 20
-" let g:ctrlp_max_depth = 40
-" let g:ctrlp_extensions = ['tag']
-" let g:ctrlp_max_files=0
-" let g:cssColorVimDoNotMessMyUpdatetime = 1
-" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" nnoremap <leader>. :CtrlPTag<cr>
+" Ctrlp
+let g:ctrlp_dont_split = "NERD_tree_2"
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_map = "<leader>f"
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_split_window = 0
+let g:ctrlp_max_height = 20
+let g:ctrlp_max_depth = 40
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_max_files=0
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+nnoremap <leader>. :CtrlPTag<cr>
 
 "Start searching with Ack
 nnoremap <leader>a :Ag
 set nocp
 let coffee_compiler='$(which coffee)'
 "Format json files
-"   command! FormatJSON %!python -m json.tool
+command! FormatJSON %!python -m json.tool
 
 set noeb vb t_vb=
 au GUIEnter * set vb t_vb=
 "  set clipboard=unnamedplus
 
 " Status line
-" set statusline=%t       "tail of the filename
-" set statusline+=%=      "left/right separator
-" set statusline+={%{strlen(&fenc)?&fenc:'none'}, "file encoding
-" set statusline+=%{&ff}} "file format
-" set statusline+=%h      "help file flag
-" set statusline+=%m      "modified flag
-" set statusline+=%=      "left/right separator
-" set statusline+=%r      "read only flag
-" set statusline+=%y      "filetype
-" set statusline+=%=      "left/right separator
-" set statusline+=%=      "left/right separator
-" set statusline+=%l/%L   "cursor line/total lines
+set statusline=%t       "tail of the filename
+set statusline+=%=      "left/right separator
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%=      "left/right separator
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%=      "left/right separator
+set statusline+=%l/%L   "cursor line/total lines
 
 "Config wrap word|lines into simple or double quotes
 nnoremap <Leader>q" ciw""<Esc>P
@@ -187,10 +193,17 @@ nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 set tags=./.git/tags;
 "autocmd bufnewfile *.php :r ~/.vim/templates/php_skeleton.txt
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 "Magento config
 "let g:vimMagentoAuthor = "Alejandro Espinoza <alexesba@gmail.com>"
 "let g:vimMagentoCopyright = "Copyright 2016 Alejandro Espinoza"
 "let g:vimMagentoLicense = "No License"
+
+"Go config
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+"Autoclose html tags
+let g:closetag_html_style=1
