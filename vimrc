@@ -10,6 +10,8 @@ Plugin 'tomtom/tcomment_vim'
 "Autoclose tags
 Plugin 'vim-scripts/xml.vim'
 Plugin 'vim-scripts/closetag.vim'
+"HTML emmet
+Plugin 'mattn/emmet-vim'
 
 " Autoheader
 "  Plugin 'shanzi/autoHEADER'
@@ -70,6 +72,7 @@ set ignorecase
 set hlsearch
 set incsearch
 set number
+set copyindent
 "Clear last search highlighting
 map <Space> :noh<cr>
 set ar " autoload edited file
@@ -136,10 +139,10 @@ else
   " hi NonText ctermfg=none ctermbg=none
 endif
 "
-"   "Config for js indentation files
-"   let g:html_indent_inctags = "html,body,head,tbodyi"
-"   let g:html_indent_script1 = "inc"
-"   let g:html_indent_style1 = "inc"
+"Config for js indentation files
+let g:html_indent_inctags = "html,body,head,tbodyi"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 "Toogle comments
 nnoremap <silent> <Leader>c :TComment<CR>
 vnoremap <silent> <Leader>c :TComment<CR>
