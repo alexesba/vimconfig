@@ -6,12 +6,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'godlygeek/tabular'
 
 "Autoclose tags
 Plugin 'vim-scripts/xml.vim'
 Plugin 'vim-scripts/closetag.vim'
 "HTML emmet
 Plugin 'mattn/emmet-vim'
+Plugin 'digitaltoad/vim-jade'
+
+" Javascript autoindent
+Plugin 'pangloss/vim-javascript'
 
 " Autoheader
 "  Plugin 'shanzi/autoHEADER'
@@ -21,6 +26,7 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'avakhov/vim-yaml'
+
 "search plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
@@ -31,12 +37,14 @@ Plugin 'spf13/PIV'
 
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tpope/vim-surround'
-
+"Less
+Plugin 'groenewege/vim-less'
 "Git support
 Plugin 'tpope/vim-fugitive'
 
 "Suport JS ant js templates
 "Plugin 'jeyb/vim-jst'
+Plugin 'briancollins/vim-jst'
 "Plugin 'AndrewRadev/vim-eco'
 "Plugin  'nono/vim-handlebars'
 
@@ -68,7 +76,7 @@ set backspace=indent,eol,start
 set autoindent
 set smarttab
 set expandtab
-set ignorecase
+" set ignorecase
 set hlsearch
 set incsearch
 set number
@@ -134,13 +142,13 @@ if has("gui_running")
   set go+=e
 else
   set t_Co=256
-  colorscheme vividchalk
+  colorscheme google-prettify
   " hi Normal ctermfg=252 ctermbg=none
   " hi NonText ctermfg=none ctermbg=none
 endif
 "
 "Config for js indentation files
-let g:html_indent_inctags = "html,body,head,tbodyi"
+let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 "Toogle comments
