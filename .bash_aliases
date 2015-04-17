@@ -1,0 +1,8 @@
+alias gs='git status'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gb='git branch'
+alias ga='git add'
+alias gap='git add --patch'
+# alias laravel='php artisan'
