@@ -10,8 +10,8 @@ fi
 echo "initializing submodules"
 git submodule init
 echo "updating submodules"
-git submodule update
 git submodule foreach git pull origin master
+git submodule update
 
 ln -s $HOME/.vim/alexesba/colors $HOME/.vim/colors
 
