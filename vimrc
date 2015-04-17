@@ -26,11 +26,13 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'avakhov/vim-yaml'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'suan/vim-instant-markdown'
 
 "search plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
-"   "PHP laravel
+"PHP laravel
 Plugin 'xsbeats/vim-blade'
 Plugin 'spf13/PIV'
 "Plugin 'mjoey/vim-magento'
@@ -49,7 +51,7 @@ Plugin 'briancollins/vim-jst'
 "Plugin  'nono/vim-handlebars'
 
 "Adding custom status bar
-"Plugin 'maciakl/vim-neatstatus'
+" Plugin 'maciakl/vim-neatstatus'
 "Plugin 'Lokaltog/vim-powerline'
 
 "Rabl syntax
@@ -61,9 +63,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-eunuch'
 
 " Go language
-Plugin 'jnwhiteh/vim-golang'
-Plugin 'Blackrush/vim-gocode'
-Plugin 'fatih/vim-go'
+" Plugin 'jnwhiteh/vim-golang'
+" Plugin 'Blackrush/vim-gocode'
+" Plugin 'fatih/vim-go'
 call vundle#end()
 syntax on
 filetype plugin indent on
@@ -142,9 +144,9 @@ if has("gui_running")
   set go+=e
 else
   set t_Co=256
+  hi Normal ctermfg=252 ctermbg=none
+  hi NonText ctermfg=none ctermbg=none
   colorscheme google-prettify
-  " hi Normal ctermfg=252 ctermbg=none
-  " hi NonText ctermfg=none ctermbg=none
 endif
 "
 "Config for js indentation files
@@ -183,19 +185,38 @@ set noeb vb t_vb=
 au GUIEnter * set vb t_vb=
 "  set clipboard=unnamedplus
 
+
+hi User1 guifg=#eea040 guibg=#222222
+hi User2 guifg=#dd3333 guibg=#222222
+hi User3 guifg=#ff66ff guibg=#222222
+hi User4 guifg=#a0ee40 guibg=#222222
+hi User5 guifg=#eeee40 guibg=#222222
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%5*%{&ff}%*            "file format
+set statusline +=%3*%y%*                "file type
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*0x%04B\ %*          "character under cursor
+
+
 " Status line
-set statusline=%t       "tail of the filename
-set statusline+=%=      "left/right separator
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%=      "left/right separator
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%=      "left/right separator
-set statusline+=%l/%L   "cursor line/total lines
+" set statusline=
+" set statusline=%t       "tail of the filename
+" set statusline+=%=      "left/right separator
+" set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+" set statusline+=%{&ff}] "file format
+" set statusline+=%h      "help file flag
+" set statusline+=%m      "modified flag
+" set statusline+=%=      "left/right separator
+" set statusline+=%r      "read only flag
+" set statusline+=%y      "filetype
+" set statusline+=%=      "left/right separator
+" set statusline+=%=      "left/right separator
+" set statusline+=%l/%L   "cursor line/total lines
 
 "Config wrap word|lines into simple or double quotes
 nnoremap <Leader>q" ciw""<Esc>P
