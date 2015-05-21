@@ -29,6 +29,9 @@ Plugin 'avakhov/vim-yaml'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'suan/vim-instant-markdown'
 
+" PHP tags
+Plugin 'soramugi/auto-ctags.vim'
+
 "search plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
@@ -68,21 +71,18 @@ Plugin 'tpope/vim-eunuch'
 " Plugin 'fatih/vim-go'
 call vundle#end()
 syntax on
-filetype plugin indent on
-set tabstop=2
-set smarttab
 set nowrap
-set shiftwidth=2
-set backspace=2
-set backspace=indent,eol,start
-set autoindent
-set smarttab
-set expandtab
+" set backspace=2
+" set backspace=indent,eol,start
 " set ignorecase
 set hlsearch
 set incsearch
 set number
-set copyindent
+
+filetype plugin on
+" Alternative: use the following to also enable language-dependent indenting.
+filetype plugin indent on
+
 "Clear last search highlighting
 map <Space> :noh<cr>
 set ar " autoload edited file
@@ -134,11 +134,10 @@ map <silent> <D-6> :tabn 6<cr>
 map <silent> <D-7> :tabn 7<cr>
 map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
-" color scheme console
+colorscheme pencil
 "Power Line config
 if has("gui_running")
-  colorscheme candystripe
-  " set background=light
+  set background=dark
   set guifont=Monaco:h12
   set go=
   set go+=e
@@ -146,7 +145,6 @@ else
   set t_Co=256
   hi Normal ctermfg=252 ctermbg=none
   hi NonText ctermfg=none ctermbg=none
-  colorscheme google-prettify
 endif
 "
 "Config for js indentation files
@@ -223,7 +221,7 @@ nnoremap <Leader>q" ciw""<Esc>P
 nnoremap <Leader>q' ciw''<Esc>P
 nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
-set tags=./.git/tags;
+" set tags=./.git/tags;
 "autocmd bufnewfile *.php :r ~/.vim/templates/php_skeleton.txt
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -239,3 +237,12 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 "Autoclose html tags
 let g:closetag_html_style=1
+
+" ctags
+let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags_tags_name = 'tags'
+let g:auto_ctags_tags_args = '--tag-relative=yes --recurse=yes --exclude=.modman --exclude=.git'
+
+for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
+  exe 'source' fpath
+endfor
