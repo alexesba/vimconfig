@@ -2,12 +2,15 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+"sintax checker
+Plugin 'msanders/snipmate.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
 "vim extend functionality
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
-
 "Autoclose tags
 Plugin 'vim-scripts/xml.vim'
 Plugin 'vim-scripts/closetag.vim'
@@ -24,6 +27,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-markdown'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'avakhov/vim-yaml'
 Plugin 'chase/vim-ansible-yaml'
@@ -46,6 +50,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'groenewege/vim-less'
 "Git support
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 
 "Suport JS ant js templates
 "Plugin 'jeyb/vim-jst'
@@ -67,7 +72,7 @@ Plugin 'tpope/vim-eunuch'
 
 " Go language
 " Plugin 'jnwhiteh/vim-golang'
-" Plugin 'Blackrush/vim-gocode'
+Plugin 'Blackrush/vim-gocode'
 " Plugin 'fatih/vim-go'
 call vundle#end()
 syntax on
@@ -134,17 +139,12 @@ map <silent> <D-6> :tabn 6<cr>
 map <silent> <D-7> :tabn 7<cr>
 map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
-colorscheme pencil
+colorscheme hemisu
 "Power Line config
 if has("gui_running")
-  set background=dark
   set guifont=Monaco:h12
   set go=
   set go+=e
-else
-  set t_Co=256
-  hi Normal ctermfg=252 ctermbg=none
-  hi NonText ctermfg=none ctermbg=none
 endif
 "
 "Config for js indentation files
@@ -221,7 +221,7 @@ nnoremap <Leader>q" ciw""<Esc>P
 nnoremap <Leader>q' ciw''<Esc>P
 nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
-" set tags=./.git/tags;
+set tags=./.git/tags;
 "autocmd bufnewfile *.php :r ~/.vim/templates/php_skeleton.txt
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -246,3 +246,14 @@ let g:auto_ctags_tags_args = '--tag-relative=yes --recurse=yes --exclude=.modman
 for fpath in split(globpath('~/.vim/settings', '*.vim'), '\n')
   exe 'source' fpath
 endfor
+
+" MOVE CODE UP AND DOWN
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+command CleanRepeated %!sort|uniq -c
+command Capitalize %s/\<./\u&/g
+command Sort '<,'>sort
