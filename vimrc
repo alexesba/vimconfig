@@ -70,6 +70,8 @@ Plugin 'terryma/vim-multiple-cursors'
 "delete files usingh comands
 Plugin 'tpope/vim-eunuch'
 
+Plugin 'alexesba/colors'
+
 " Go language
 " Plugin 'jnwhiteh/vim-golang'
 Plugin 'Blackrush/vim-gocode'
@@ -140,6 +142,7 @@ map <silent> <D-7> :tabn 7<cr>
 map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
 colorscheme hemisu
+set background=light
 "Power Line config
 if has("gui_running")
   set guifont=Monaco:h12
@@ -223,7 +226,7 @@ nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 set tags=./.git/tags;
 "autocmd bufnewfile *.php :r ~/.vim/templates/php_skeleton.txt
-autocmd BufWritePre * :%s/\s\+$//e
+command! CleanUp %s/\s\+$//e
 
 
 "Magento config

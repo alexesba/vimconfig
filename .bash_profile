@@ -87,3 +87,7 @@ function _composercomplete {
 complete -F _composercomplete composer;
 export PATH=$PATH:~/.composer/vendor/bin
 export PATH="/usr/local/sbin:$PATH"
+
+
+export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
