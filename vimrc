@@ -37,7 +37,8 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'soramugi/auto-ctags.vim'
 
 "search plugins
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 "PHP laravel
 Plugin 'xsbeats/vim-blade'
@@ -76,6 +77,8 @@ Plugin 'alexesba/colors'
 " Plugin 'jnwhiteh/vim-golang'
 Plugin 'Blackrush/vim-gocode'
 " Plugin 'fatih/vim-go'
+"
+" Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 syntax on
 set nowrap
@@ -145,7 +148,10 @@ colorscheme hemisu
 set background=light
 "Power Line config
 if has("gui_running")
-  set guifont=Monaco:h12
+  set encoding=utf8
+  " set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h12
+  " set guifont=Inconsolata\ LGC\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h12
+  set guifont=InconsolataForPowerline\ Nerd\ Font:h14
   set go=
   set go+=e
 endif
@@ -172,7 +178,35 @@ let g:ctrlp_max_depth = 40
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_max_files=0
 let g:cssColorVimDoNotMessMyUpdatetime = 1
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+let s:ctrlp_fallback = 'ag %s
+      \ --nocolor --nogroup --depth 5
+      \ --hidden --follow --smart-case
+      \ --ignore .bazaar
+      \ --ignore .bzr
+      \ --ignore .git
+      \ --ignore .hg
+      \ --ignore .svn
+      \ --ignore .ccache
+      \ --ignore .DS_Store
+      \ --ignore .opt1
+      \ --ignore .pylint.d
+      \ --ignore .shell
+      \ --ignore .wine
+      \ --ignore .wine-pipelight
+      \ --ignore "**/*.pyc"
+      \ --ignore "**/*.class"
+      \ --ignore "**/*.o"
+      \ -g ""'
+
+let g:ctrlp_user_command = {
+    \ 'types': {
+      \ 1: ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard'],
+      \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+    \ 'fallback': s:ctrlp_fallback
+\ }
+
 nnoremap <leader>. :CtrlPTag<cr>
 
 "Start searching with Ack
@@ -194,14 +228,16 @@ hi User4 guifg=#a0ee40 guibg=#222222
 hi User5 guifg=#eeee40 guibg=#222222
 set statusline=
 set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%5*%{&ff}%*            "file format
 set statusline +=%3*%y%*                "file type
-set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%4*\ %<%f%*            "full path
 set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=      "left/right separator
+set statusline +=%5*%{&ff}%*            "file format
+set statusline+=%1*\ %{strlen(&fenc)?&fenc:'none'}\ %* "file encoding
 set statusline +=%1*%=%5l%*             "current line
 set statusline +=%2*/%L%*               "total lines
 set statusline +=%1*%4v\ %*             "virtual column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
+" set statusline +=%2*0x%04B\ %*          "character under cursor
 
 
 " Status line
@@ -260,3 +296,37 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 command CleanRepeated %!sort|uniq -c
 command Capitalize %s/\<./\u&/g
 command Sort '<,'>sort
+
+" NERDTress File highlighting
+" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"   exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"   exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" endfunction
+"
+" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+" call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+" call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+
+" let g:webdevicons_enable_ctrlp = 1
+"
+" let g:WebDevIconsOS = 'Darwin'
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:DevIconsEnableFoldersOpenClose = 1
+" set ambiwidth=double
+" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
